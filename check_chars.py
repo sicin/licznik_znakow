@@ -1,13 +1,28 @@
 import sys
 import string
 from collections import defaultdict
+from os import walk
 
-file_loc = "wszystkie.txt"
+conc_file = "wszystkie.txt"
+f = []
+for (dirpath, dirnames, filenames) in walk("./art_pojedyncze"):
+    f.extend(filenames)
+    break
+print(f)
+
+articles = f
+
+with open(conc_file, 'w', encoding="utf-8") as outfile:
+    for names in articles:
+        with open(f"./art_pojedyncze/{names}", encoding="utf-8") as infile:
+            outfile.write(infile.read())
+        outfile.write("\n")
+
 try:
-    f = open(file_loc, "r", encoding='gbk')
+    f = open(conc_file, "r", encoding='gbk')
     allstr = f.read()
 except UnicodeDecodeError:
-    f = open(file_loc, "r", encoding='utf-8')
+    f = open(conc_file, "r", encoding='utf-8')
     allstr = f.read()
 
 # dict to count chars, default to zero
@@ -30,7 +45,7 @@ unicode_ranges = [0x3007, 0x3007], [0x3400, 0x4DBF], [
 for i, key in list(enumerate(d)):
     if not any(map(lambda x: x[0] <= ord(key) <= x[1], unicode_ranges)):
         del d[key]
-print(f"Tekst: {file_loc[:-4]}")
+print(f"Tekst: {conc_file[:-4]}")
 print(f"Łączna liczba chińskich znaków = {len(d)}")
 
 # map word_count to list of chars
