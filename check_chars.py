@@ -8,7 +8,6 @@ f = []
 for (dirpath, dirnames, filenames) in walk("./art_pojedyncze"):
     f.extend(filenames)
     break
-print(f)
 
 articles = f
 
