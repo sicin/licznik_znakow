@@ -2,7 +2,7 @@ import sys
 import string
 from collections import defaultdict
 
-file_loc = "POŁĄCZONE.txt"
+file_loc = "wszystkie.txt"
 try:
     f = open(file_loc, "r", encoding='gbk')
     allstr = f.read()
