@@ -44,8 +44,8 @@ unicode_ranges = [0x3007, 0x3007], [0x3400, 0x4DBF], [
 for i, key in list(enumerate(d)):
     if not any(map(lambda x: x[0] <= ord(key) <= x[1], unicode_ranges)):
         del d[key]
-print(f"Tekst: {conc_file[:-4]}")
-print(f"Łączna liczba chińskich znaków = {len(d)}")
+print(f"Badany tekst: {conc_file[:-4]}")
+print(f"Łączna liczba różnych chińskich znaków = {len(d)}")
 
 # map word_count to list of chars
 d2 = defaultdict(list)
